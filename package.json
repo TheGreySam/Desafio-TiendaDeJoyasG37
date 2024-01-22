@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/TheGreySam/Desafio-TiendaDeJoyasG37/issues"
   },
-  "homepage": "https://github.com/TheGreySam/Desafio-TiendaDeJoyasG37#readme"
+  "homepage": "https://github.com/TheGreySam/Desafio-TiendaDeJoyasG37#readme",
+  "dependencies": {
+    "axios": "^1.6.5"
+  }
 }
