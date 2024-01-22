@@ -18,6 +18,7 @@
   "homepage": "https://github.com/TheGreySam/Desafio-TiendaDeJoyasG37#readme",
   "dependencies": {
     "axios": "^1.6.5",
-    "cors": "^2.8.5"
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.2"
   }
 }
