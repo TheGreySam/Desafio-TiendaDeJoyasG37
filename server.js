@@ -1,24 +1,15 @@
-import pkg from 'pg';
-import dotenv from 'dotenv';
+import express from "express";
+import cors from "cors";
+import joyasRoutes from "./config/routes/joyasRoutes.js";
+import { logger } from "logger-express";
 
-const { Pool } = pkg;
-dotenv.config();
+const app = express();
+const PORT = process.env.PORT || 3000;
 
-const port = process.env.PORT || 3000;
+app.use(express.json());
+app.use(cors());
+app.use(logger());
+app.use("/api/v1", joyasRoutes);
+// app.use("/api/v1", sessionsRoutes);
 
-export const pool = new Pool({
-  user: process.env.PGUSER,
-  host: process.env.PGHOST,
-  database: process.env.PGDATABASE,
-  password: process.env.PGPASSWORD,
-  port: process.env.PGPORT,
-
-});
-
-
-  try {
-    //await pool.query("SELECT NOW()");
-    console.log(`Base de datos conectada en ${port}`);
-  } catch (error) {
-    console.log(error);
-  }
+app.listen(PORT, console.log(`¡Servidor encendido en el puerto! ${PORT}`));
