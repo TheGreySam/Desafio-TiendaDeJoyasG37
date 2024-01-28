@@ -4,7 +4,7 @@ const createQuery = (entity, filters) => {
     const table = entity.toLowerCase();
     let query = `SELECT * FROM ${table} WHERE 1 = 1`;
   
-    console.log("init query", query);
+    // console.log("init query", query);
   
     // La expresión 1 = 1 es simplemente una condición que siempre es verdadera. Se utiliza comúnmente
     // como truco en la construcción de consultas SQL dinámicas para simplificar la lógica.
@@ -17,19 +17,21 @@ const createQuery = (entity, filters) => {
   
     // Obtener las claves y valores de filters
     const filterEntries = Object.entries(filters);
-    console.log("filterEntries", filterEntries);
+    // console.log("filterEntries", filterEntries);
     const values = [];
     // Iterar sobre las claves y valores de filters
     for (const [key, value] of filterEntries) {
-      // if (key == 'stock_min'){
-      //   query += ` AND stock >= $${values.length + 1}`;
-      //   values.push(value);
-      // }
+      if (key == 'precio_min'){
+        query += ` AND precio > $${values.length + 1}`;
+        values.push(value);
+      }else if(key == 'precio_max'){
+        query += ` AND precio < $${values.length + 1}`;
+        values.push(value);
+      }else{
       query += ` AND ${key} = $${values.length + 1}`;
       values.push(value);
+      }
     }
-    console.log("final query", query);
-    console.log("final values", values);
     return { query, values };
   };
   
